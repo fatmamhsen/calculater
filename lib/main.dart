@@ -100,7 +100,7 @@ class _MyAppState extends State<MyApp> {
                   padding: EdgeInsets.only(bottom: 25.0),
                 ),
                 Text(
-                  '$res',
+                  '$textdisplay',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 35.0,
