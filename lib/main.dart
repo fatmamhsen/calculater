@@ -12,18 +12,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int firstnum = 0;
-  int secondnum = 0;
+  dynamic firstnum = '';
+  dynamic secondnum = '';
   String textdisplay = '';
   String res = '';
   String operation = '';
 
   void btnclicked(String btntext) {
-
     if (btntext == 'C') {
       textdisplay = '';
-      firstnum = 0;
-      secondnum = 0;
+      firstnum = '';
+      secondnum = '';
       res = '';
       operation = '';
     } else if (btntext == '+' ||
@@ -55,6 +54,7 @@ class _MyAppState extends State<MyApp> {
       textdisplay = res;
     });
   }
+
 
   Widget customButton(String btn, Color colur) {
     return Expanded(
@@ -159,7 +159,33 @@ class _MyAppState extends State<MyApp> {
                   children: <Widget>[
                     customButton('0', const Color(0xffffffff)),
                     customButton('.', const Color(0xffffffff)),
-                    customButton('', const Color(0xffffffff)),
+                    MaterialButton(
+                      onPressed: () {
+                        int factorial(var value) {
+                          int fact = 1;
+                          for (int i = 2; i <= value; i++) {
+                            fact *= i;
+                          }
+                          return fact;
+                        }
+                        setState(() {
+                          var value = int.parse(textdisplay);
+                          res = '${factorial(value).toString()} ';
+                        });
+                      },
+                      child: CircleAvatar(
+                        radius: 33.0,
+                        backgroundColor: Color.fromRGBO(238, 240, 237, 1),
+                        child: Text(
+                          '!',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ),
                     customButton('=', const Color.fromRGBO(21, 233, 193, 1)),
                   ],
                 ),
